@@ -1,0 +1,148 @@
+body{
+  font-family: 'Work Sans', sans-serif;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,d3d3d3+98 */
+background: #ffffff; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #d3d3d3 98%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%,#d3d3d3 98%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, #ffffff 0%,#d3d3d3 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d3d3d3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h1{
+  text-align: center;
+  padding: 50px;
+  width: 100%;
+  font-size: 22px;
+  line-height: 30px;
+  padding-top: 70px;
+  color: #b3b3b3;
+  
+  a{
+    color: #00cc99;
+    text-decoration: none;
+  }
+}
+
+.login-form{
+  margin: auto;
+  border-radius: 5px;
+  width: 45%;
+  min-width: 300px;
+  position: relative;
+  
+  &:before, &:after{
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #777;
+    box-shadow: 0 15px 10px #777;
+    transform: rotate(-3deg);
+  }
+  &:after{
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+  }
+
+  .header{
+    display: block;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    background: #00cc99;
+    box-shadow: inset 0px 0px 61px -20px rgba(0,0,0,0.48);
+  }
+  
+  form{
+    padding: 30px;
+    background: #f2f2f2;
+  }
+  
+  .input-wrap{
+    position: relative;
+    
+    svg{
+      width: 10%;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      z-index: +1;
+      fill: #b3b3b3;
+    }
+  }
+  
+  input[type=text], input[type=password]{
+    margin-bottom: 15px;
+    font-size:14px;
+    padding: 15px;
+    padding-right: 50px;
+    width: 100%;
+    border-radius: 5px;
+    background: none;
+    box-shadow: none;
+    border: none;
+    box-shadow: inset 0px 0px 61px -20px rgba(0,0,0,0.18);
+      display: block;
+  }
+ 
+  input[type=submit]{
+    appearance: none;
+    background: #00cc99;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 15px;
+    box-shadow: inset 0px 0px 61px -20px rgba(0,0,0,0.18);
+    cursor: pointer;
+    
+    &:hover{
+      background: black;
+    }
+  }
+  
+  a{
+    float: right;
+    padding: 12px;
+    text-decoration: none;
+    color: #b3b3b3;
+    font-size: 14px;
+    &:hover{
+      color: black;
+    }
+  }
+}
+
+.error-msg{
+  color: crimson;
+  font-size: 12px;
+  display: block;
+  padding: 20px;
+  padding-left: 20px;
+  padding-right: 0;
+  position: relative;
+  opacity: .7;
+  
+  &:before{
+    position: absolute;
+    content: '+';
+    left: 0;
+    top: 12px;
+    font-size: 25px;
+    transform: rotate(45deg);
+  }
+}

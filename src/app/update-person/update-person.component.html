@@ -1,0 +1,101 @@
+<style>
+  .col-md-12 {
+    width: 96% !important;
+  }
+</style>
+
+<div class="container">
+  <p>
+    update-person works!
+  </p>
+
+  <form #catupdate='ngForm' (ngSubmit)="Update(comupdate)" id="registrationForm">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Edit Company</h3>
+          </div>
+
+          <div class="box-body">
+            <ng-container *ngFor="let value of values; first as isFirst">
+              <div class="form-group">
+                <label class="comm" for="contactNo">Contact No</label>
+                <input type="text" class="form-control"
+                       id="Tel" placeholder="Enter Telephone No!"
+                       name="Tel" [(ngModel)]="value.Tel">
+              </div>
+
+              <div class="form-group">
+                <button *ngIf="isFirst" id="btnUpdate" type="submit" class="btn btn-primary">Update</button>
+              </div>
+
+              <div class="form-group">
+                <div id="msg"></div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--<div class="container">
+  <p>
+    update-person works!
+  </p>
+
+  <form #catupdate='ngForm' (ngSubmit)="Update(catupdate)" id="registrationForm">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Update Category</h3>
+          </div>
+
+          <div class="box-body">
+            <ng-container *ngFor="let value of values; first as isFirst">
+              <div class="form-group">
+                <label class="comm" for="userType">Category Name</label>
+                <input type="text" class="form-control"
+                       id="CategoryName" placeholder="Enter category name!"
+                       name="CategoryName" [(ngModel)]="value.categoryName">
+              </div>
+
+              <!--div class="form-group">
+                <label for="country">Country</label>
+                <select class="form-control" name="country" id="country">
+                  <option name="Country" [(ngModel)]="value.country" value={{value.country}}>
+                    {{value.countryName}}
+                  </option>
+                </select>
+              </div>-->
+
+              <!--<div class="form-group">
+                <label for="status">Country</label>
+                <select class="form-control" id="Country" name="Country" [(ngModel)]="value.country" >
+                  <option name="Country" value={{value.country}}>
+                    {{value.countryName}}
+                  </option>
+
+                  <option *ngFor="let country of countries" value={{country.id}}>
+                    {{country.name}}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <button *ngIf="isFirst" id="btnUpdate" type="submit" class="btn btn-primary">Update</button>
+              </div>
+
+              <div class="form-group">
+                <div id="msg"></div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>-->

@@ -1,0 +1,115 @@
+<style>
+  .col-md-12 {
+    width: 95% !important;
+  }
+</style>
+
+
+<div class="container">
+  <p>
+    show-companies work!
+  </p>
+  <!--The content below is only a placeholder and can be replaced.-->
+  <div style="text-align:center">
+    <h1>
+      Welcome To {{ title }}!
+    </h1>
+    <p *ngIf="!values"><em>Loading...</em></p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title"><b>Company Details</b></h3>
+        </div>
+
+        <!-- Table row -->
+        <div class="row" id="tabClinic">
+          <div class="col-xs-12 table-responsive">
+            <table *ngIf="values" class="table table-responsive" border="2">
+              <thead>
+                <tr>
+                  <th>Sl No.</th>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Tel.</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let value of values let i = index ">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ value.companyID }}</td>
+                  <td>{{ value.companyName }}</td>
+                  <td>{{ value.Address }}</td>
+                  <td>{{ value.Tel }}</td>
+                  <td><a href="#">Details</a></td>
+                  <td><a [routerLink]="['/update-person', value.companyID]"> Edit</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <label>Department:</label>
+      <select [ngModel]="selectedValue" (ngModelChange)="onChange($event)" class="form-control">
+        <option value="0">Please select Value</option>
+        <option value="STORE">STORE</option>
+        <option value="PAYROLL">PAYROLL</option>
+        <option value="PRODUCTION ENGINEERING">PRODUCTION ENGINEERING</option>
+        <option value="IQC">IQC</option>
+      </select>
+      <br />
+    </div>
+
+    <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title"><b>Employee Details</b></h3>
+        </div>
+
+        <!-- Table row -->
+        <div class="row" id="tabClinic">
+          <div class="col-xs-12 table-responsive">
+            <table *ngIf="empInfo" class="table table-responsive" border="2">
+              <thead>
+                <tr>
+                  <th>Sl No.</th>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Dept.</th>
+                  <th>Section</th>
+                  <th>Designation</th>
+                  <th>Gross</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let value of empInfo let i = index ">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ value.Emp_Auto_ID }}</td>
+                  <td>{{ value.EmployeeName }}</td>
+                  <td>{{ value.Dept_Name }}</td>
+                  <td>{{ value.Section }}</td>
+                  <td>{{ value.Des_Name }}</td>
+                  <td>{{ value.gross }}</td>
+                  <td><a href="#">Details</a></td>
+                  <td><a [routerLink]="['/update-person', value.companyID]"> Edit</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+    </div>
+  </div>
+</div>
+

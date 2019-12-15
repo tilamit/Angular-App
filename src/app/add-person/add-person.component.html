@@ -1,0 +1,271 @@
+<style>
+  /*.col-md-12 {
+    width: 94% !important;
+  }*/
+
+  /*.box {
+    width: 60% !important;
+  }*/
+
+  .text-align {
+    margin-left: 12%;
+  }
+</style>
+
+<label>Employee ID:</label>
+<select [ngModel]="selectedValue" (ngModelChange)="onChangex($event)" class="form-control">
+  <option value="">Please select Value</option>
+  <option *ngFor="let value of empIds" [ngValue]="value.Emp_Auto_ID">
+    {{value.Emp_Auto_ID}}
+  </option>
+</select>
+
+<!--Built-in Directives To Attach a behavior To HTML Elements - ngIf, ngFor-->
+<div class="row">
+  <div class="col-md-6 col-xs-10">
+    <mk-accordion-group>
+      <mk-accordion header="Employee Details">
+        <div *ngFor="let value of empDetails let i = index">
+          <div class="col-md-2 img-align">
+            <img id="myimage" height="190" width="150" class="rounded float-left" [src]='thumbnail' />
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 text-align">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="empName">Name</label> {{ value.EmployeeName }}
+                </div>
+
+                <div class="form-group">
+                  <label for="empName">Department</label> {{ value.Dept_Name }}
+                </div>
+
+                <div class="form-group">
+                  <label for="empName">Section</label> {{ value.Section }}
+                </div>
+
+                <div class="form-group">
+                  <label for="empName">Designation</label> {{ value.Des_Name }}
+                </div>
+                <div class="form-group">
+                  <label for="empName">Gross</label> {{ value.gross }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mk-accordion>
+    </mk-accordion-group>
+
+    <mk-accordion-group>
+      <mk-accordion header="Leave Application" borderColor="danger">
+        <form #leaveadd='ngForm' (ngSubmit)="Register(leaveadd)" id="leaveForm" [formGroup]="filtersForm">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="comm" for="leaveType">Leave Type</label>
+                  <select formControlName="leaveTypeList" [(ngModel)]="LeaveName" (ngModelChange)="onChangeLeave($event)" class="form-control">
+                    <option value="">Please select leave</option>
+                    <option *ngFor="let value of empLeaveType" [ngValue]="value.LeaveType">
+                      {{value.LeaveType}}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <mk-alert *ngIf="hasDropDownError2" backgroundColor="danger" [isDismissible]="true">
+                    <!--<h4><i class="icon fa fa-info"></i> Alert!</h4>-->
+                    Leave Type not selected!
+                  </mk-alert>
+                </div>
+
+                <div class="form-group">
+                  <label class="comm" for="Reason">Reason</label>
+                  <textarea name="LeaveDetails" [(ngModel)]='LeaveDetails' rows="4" cols="50" class="form-control">
+                     At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+                  </textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="comm" for="FromDate">From Date</label>
+                  <!--<nz-date-picker></nz-date-picker>-->
+                  <!--<nz-date-picker></nz-date-picker>-->
+                  <!--<nz-range-picker [ngModel]="date" (ngModelChange)="onChangeDate($event)"></nz-range-picker>-->
+                  <nz-range-picker formControlName="dt2" class="dt" [(ngModel)]="dateRange" (ngModelChange)="onChange($event)"></nz-range-picker>
+                  <!--<nz-demo-date-picker-format>loading</nz-demo-date-picker-format>-->
+                </div>
+                 
+                <div class="form-group">
+                  <label class="approvedBy" for="approvedBy">Approved By</label>
+                  <select formControlName="approverList" [(ngModel)]="approvedBy" class="form-control">
+                    <option value="">Please select approver</option>
+                    <option value="hr">HR</option>
+                    <option value="md">MD</option>
+                    <option value="chairman">Chairman</option>
+                    <option value="director">Director</option>
+                    <option></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <mk-alert *ngIf="hasDropDownError1" backgroundColor="danger" [isDismissible]="true">
+                    <!--<h4><i class="icon fa fa-info"></i> Alert!</h4>-->
+                    Approver not selected!
+                  </mk-alert>
+                </div>
+                <!--<div class="form-group">
+                  <span class="alert alert-danger" *ngIf="hasDropDownError1">Approver not selected!</span>
+                </div>-->
+                <!--<div class="form-group">
+                  <label for="status">Status</label>
+                  <select name="Status" class="form-control" Status required [(ngModel)]='objcat.Status' #Status="ngModel">
+                    <option value="0" selected disabled>Please Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="status">Country</label>
+                  <select class="form-control" name="status" id="status" #status="ngModel" [(ngModel)]='nameId' (change)="selectName();">
+                    <option value="0">--Select Country--</option>
+                    <option *ngFor="let country of countries" value={{country.id}}>
+                      {{country.name}}
+                    </option>
+                  </select>
+                </div>-->
+
+                <div class="form-group">
+                  <button id="btnsubmit" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                <div class="form-group">
+                  <div id="msg"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </mk-accordion>
+    </mk-accordion-group>
+  </div>
+
+  <!-- Leave allotment -->
+  <div class="col-md-6 col-xs-10">
+    <mk-accordion-group>
+      <mk-accordion header="Leave Allotment">
+        <div class="col-md-12">
+          <div class="box box-primary">
+            <!-- Table row -->
+            <div class="row" id="tabClinic">
+              <div class="col-xs-12 table-responsive">
+                <table *ngIf="empLeave" class="table table-responsive" border="1">
+                  <thead>
+                    <tr>
+                      <th>Sl No.</th>
+                      <th>Name</th>
+                      <th>Allotment</th>
+                      <th>Enjoy</th>
+                      <th>Remain</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let value of empLeave let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ value.LeaveName }}</td>
+                      <td>{{ value.LeaveNo }}</td>
+                      <td>{{ value.Enjoy }}</td>
+                      <td>{{ value.LeaveRemains }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+      </mk-accordion>
+    </mk-accordion-group>
+  </div>
+
+  <!-- Leave details -->
+  <div class="col-md-6 col-xs-10">
+    <mk-accordion-group>
+      <mk-accordion header="Leave Details">
+        <div class="col-md-12">
+          <div class="box box-primary">
+            <!-- Table row -->
+            <div class="row" id="tabClinic">
+              <div class="col-xs-12 table-responsive">
+                <table *ngIf="empLeave" class="table table-responsive" border="1">
+                  <thead>
+                    <tr>
+                      <th>Sl No.</th>
+                      <th>App No.</th>
+                      <th>Name</th>
+                      <th>From Date</th>
+                      <th>To Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let value of empLeaveDetails let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ value.App_No }}</td>
+                      <td>{{ value.LeaveName }}</td>
+                      <td>{{ value.FromDate | date :'dd-MMM-yyyy' }} </td>
+                      <td>{{ value.ToDate | date :'dd-MMM-yyyy' }} </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+      </mk-accordion>
+    </mk-accordion-group>
+  </div>
+</div>
+
+<!--<div class="form-group">
+  <label class="comm" for="Description">Description</label>
+  <input type="text" class="form-control"
+         id="Description" placeholder="Enter description!"
+         name="Description" Description required [(ngModel)]='objcat.Description' #Description="ngModel">
+  <span class="help-bpx" *ngIf="Description.touched && !Description.valid ">Required</span>
+</div>
+
+<div class="form-group">
+  <label for="status">Status</label>
+  <select name="Status" class="form-control" Status required [(ngModel)]='objcat.Status' #Status="ngModel">
+    <option value="0" selected disabled>Please Select</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label class="comm" for="ParentId">Parent</label>
+  <select name="ParentId" class="form-control" ParentId required [(ngModel)]='objcat.ParentId' #ParentId="ngModel">
+    <option value="0" selected disabled>Please Select</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="status">Country</label>
+  <select class="form-control" name="status" id="status" #status="ngModel" [(ngModel)]='nameId' (change)="selectName();">
+    <option value="0">--Select Country--</option>
+    <option *ngFor="let country of countries" value={{country.id}}>
+      {{country.name}}
+    </option>
+  </select>
+</div>
+
+<div class="form-group">
+  <button id="btnsubmit" type="submit" class="btn btn-primary">Submit</button>
+</div>-->
