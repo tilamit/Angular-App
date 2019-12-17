@@ -2,18 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\app",
+    "\\src\\app\\add-person",
     "\\src\\assets",
     "\\src\\assets\\bower_components",
     "\\src\\assets\\bower_components\\jquery-sparkline",
     "\\src\\assets\\bower_components\\jquery-sparkline\\dist",
     "\\src\\assets\\bower_components\\jquery-sparkline\\src",
-    "\\src\\assets\\bower_components\\morris.js",
-    "\\src\\assets\\bower_components\\morris.js\\spec",
-    "\\src\\assets\\bower_components\\morris.js\\spec\\viz",
-    "\\src\\assets\\plugins",
-    "\\src\\assets\\plugins\\bootstrap-wysihtml5",
-    "\\src\\assets\\Scripts"
+    "\\src\\assets\\bower_components\\morris.js"
   ],
-  "SelectedNode": "\\src\\app\\add-person\\add-person.component.ts",
   "PreviewInSolutionExplorer": false
 }

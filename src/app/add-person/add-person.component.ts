@@ -12,6 +12,8 @@ import { SetLeaveBO } from '../Models/SetLeaveBO';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClientService } from '../Services/httpService';
 import { DatePipe } from '@angular/common';
+//import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
+import { compareAsc, format, differenceInCalendarDays } from 'date-fns'
 import { isAbsolute } from 'path';
 
 @Component({
@@ -37,6 +39,7 @@ export class AddPersonComponent implements OnInit {
   filtersForm: FormGroup;
   dateFormat = 'yyyy/MM/dd';
   monthFormat = 'yyyy/MM';
+  today = new Date();
 
   @Input() cleardata: boolean = false;
   @Output() nameEvent = new EventEmitter<string>();
@@ -90,6 +93,12 @@ export class AddPersonComponent implements OnInit {
     // disable other components here
   }
 
+  disabledDate = (current: Date): boolean => {
+    // Can not select days before today and today
+    return differenceInCalendarDays(current, this.today) > 0;
+  };
+
+
   ngOnInit() {
     this.nameId = 0;
     this.LoadEmpData('');
@@ -103,8 +112,10 @@ export class AddPersonComponent implements OnInit {
 
   ngAfterViewInit() {
     //this.renderer.setElementProperty(this.nm.nativeElement, 'disabled', true);
-}
+  }
 
+
+  //[nzDisabledDate]	specify the date that cannot be selected(current: Date) => boolean
   onChange(result: Date): void {
     debugger;
     console.log('onChange: ', result[0] + " " + result[1]);
@@ -191,7 +202,7 @@ export class AddPersonComponent implements OnInit {
       //alert("Allocated!");
     }
   }
-  
+
   //Get DropDown Error
   get hasDropDownError1() {
     return (
@@ -253,7 +264,7 @@ export class AddPersonComponent implements OnInit {
     } else {
       this.filtersForm.controls['dt2'].enable();
     }
-  } 
+  }
 
   //Get leave info
   GetLeaveInfo(empId: string) {

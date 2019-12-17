@@ -93,7 +93,7 @@
                   <!--<nz-date-picker></nz-date-picker>-->
                   <!--<nz-date-picker></nz-date-picker>-->
                   <!--<nz-range-picker [ngModel]="date" (ngModelChange)="onChangeDate($event)"></nz-range-picker>-->
-                  <nz-range-picker formControlName="dt2" class="dt" [(ngModel)]="dateRange" (ngModelChange)="onChange($event)"></nz-range-picker>
+                  <nz-range-picker formControlName="dt2" class="dt" [(ngModel)]="dateRange" [nzDisabledDate]="disabledDate" (ngModelChange)="onChange($event)"></nz-range-picker>
                   <!--<nz-demo-date-picker-format>loading</nz-demo-date-picker-format>-->
                 </div>
                  
